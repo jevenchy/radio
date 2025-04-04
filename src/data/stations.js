@@ -39,11 +39,13 @@ export const detectSource = (url) => {
     'cdnstream.com': 'CDNStream',
     'dlf.de': 'DLF',
     'rai.it': 'RAI',
+    'classynetradio.com': 'Classynet',
     'streamguys1.com': 'StreamGuys',
     'webradio.antenne.de': 'Antenne',
     'live365.com': 'Live365',
     'arenastreaming.com': 'Arenastream',
-    'laut.fm': 'Laut.fm'
+    'laut.fm': 'Laut.fm',
+    'akamaized.net': 'Akamaized'
   };
 
   const matched = Object.entries(sources).find(([key]) => url.includes(key));
