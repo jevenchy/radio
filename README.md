@@ -16,11 +16,13 @@
 
 ## Features
 
-![Bot in action](img/bot_embed.png)
+![Bot in action](img/bot_embed.gif)
 
 - 24/7 streaming in voice channels
 - Interactive station switcher (via dropdown)
 - Real-time stream display (embed)
+- **Automatic reconnect** to the designated voice channel if disconnected
+- **Voice channel control**: Ensure the bot only operates in the designated voice channel
 
 ## Setup
 
@@ -51,8 +53,7 @@ radio/
 ├── config/                 # Environment config
 ├── img/                    # Assets (avatar, embed)
 └── src/
-    ├── core/               # Streaming logic
-    ├── data/               # Station list
+    ├── core/               # Streaming logic (stationlist, initialize, player)
     ├── embed/              # Embed builder (menu, interaction)
     ├── events/             # Event listeners
     └── utils/              # Logger, time formatter
@@ -93,3 +94,9 @@ radio/
 - Node.js v18+
 - FFmpeg (via `ffmpeg-static`)
 - Discord bot token with voice permissions
+
+## Update Notes
+
+Major Fixes:
+Automatic reconnection: Bot will now reconnect and play the last station if disconnected from the voice channel.
+Stable error handling: If the bot is unable to connect to the voice or text channel, the process will exit with a clear error log.
