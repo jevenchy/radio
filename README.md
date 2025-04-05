@@ -98,5 +98,7 @@ radio/
 ## Update Notes
 
 Major Fixes:
-Automatic reconnection: Bot will now reconnect and play the last station if disconnected from the voice channel.
-Stable error handling: If the bot is unable to connect to the voice or text channel, the process will exit with a clear error log.
+```
+- Automatic reconnection: Bot will now reconnect and play the last station if disconnected from the voice channel.
+- Stable error handling: If the bot is unable to connect to the voice or text channel, the process will exit with a clear error log.
+``
