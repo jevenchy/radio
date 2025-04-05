@@ -1,7 +1,7 @@
 import { guildId, voiceChannelId, embedChannelId } from '../../config/config.js';
 import { logStartup } from '../utils/logger.js';
 import { initializeBot } from '../core/initializeBot.js';
-import { stations } from '../data/stations.js';
+import { stations } from '../core/stations.js';
 import { handleSelectMenu } from '../embed/radioInterface.js';
 
 let currentStation = '1';

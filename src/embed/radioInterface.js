@@ -7,7 +7,7 @@ import {
 
 import { voiceChannelId } from '../../config/config.js';
 import { formatDuration } from '../utils/formatDuration.js';
-import { detectSource } from '../data/stations.js';
+import { detectSource } from '../core/stations.js';
 import { log } from '../utils/logger.js';
 
 export const buildStationSelectMenu = (stations) => {
