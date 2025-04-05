@@ -1,9 +1,8 @@
-import { Client, GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits, Collection } from 'discord.js';
 import { token } from '../config/config.js';
-import { stations } from './data/stations.js';
-import { handleSelectMenu } from './embed/radioInterface.js';
-import { initializeBot } from './core/initializeBot.js';
 import { logStartup } from './utils/logger.js';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 const client = new Client({
   intents: [
@@ -14,38 +13,16 @@ const client = new Client({
   ]
 });
 
-let currentStation = '1';
-let startTime = null;
-let embedMessage;
+client.events = new Collection();
 
-client.once('ready', async () => {
-  logStartup(`Logged in as ${client.user.tag}`);
+const eventsPath = path.resolve('./src/events');
+const eventFiles = (await fs.readdir(eventsPath)).filter(f => f.endsWith('.js'));
 
-  const init = await initializeBot({
-    client,
-    stations,
-    setEmbedMessage: msg => embedMessage = msg,
-    getCurrentStation: () => currentStation,
-    setStartTime: val => (startTime = val)
-  });
-
-  if (!init) process.exit(1);
-
-  const { play } = init;
-
-  client.on('interactionCreate', async interaction => {
-    await handleSelectMenu({
-      interaction,
-      stations,
-      currentStation,
-      play,
-      client,
-      embedMessage,
-      setStation: val => currentStation = val,
-      startTime
-    });
-  });
-});
+for (const file of eventFiles) {
+  const { default: event } = await import(`./events/${file}`);
+  const name = file.split('.')[0];
+  client.on(name, (...args) => event(client, ...args));
+}
 
 try {
   await client.login(token);
