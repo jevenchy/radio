@@ -91,9 +91,10 @@ radio/
 
 ## Requirements
 
-- Node.js v18+
-- FFmpeg (via `ffmpeg-static`)
+- Node.js v18+ (recommended: v20 via `.nvmrc`)
+- FFmpeg (included via `ffmpeg-static`)
 - Discord bot token with voice permissions
+- Voice encryption dependency: `tweetnacl`
 
 ## Update Notes
 
